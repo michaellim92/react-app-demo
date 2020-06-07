@@ -13,24 +13,27 @@ const app = props => {
       {name: "Mike", age: "27"},
       {name: "Ashley", age: "54"},
       {name: "Mitch", age: "24"}
-    ],
-    otherState: "Something else in state",
-  });
+    ]
+  });  
 
-  console.log(personsState);
+  const [ otherState, setOtherState ] = useState({otherState: 'Some other state'})
 
-  
+  console.log(personsState, otherState)
 
   // must include the word Handler if method isn't actively called but assigning as an event handler
   const switchNameHandler = () => {
     // setState allows you to change the objects inside 'state'
     // still gets passed at the updated initialState
+
+    // the handler replaces the entire obj with the newState, so other objs in the State must be added from the old State to new State to be included
     setPersonsState({
       person: [
         {name: "Jimmy", age: "46"},
         {name: "Barbara", age: "24"},
         {name: "Donovan", age: "22"}
-      ]
+      ],
+      // otherState: personsState.otherState, will carry otherState from oldState to newState
+      // to prevent having to manually add the other objs, use useState multiple times
     })
   }
 
